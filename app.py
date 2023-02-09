@@ -91,7 +91,7 @@ def search():
 
     # Save the grayscale image to a temporary file
     temp_file = "temp_gray.png"
-    cv2.imwrite(temp_file, gray)
+    cv2.imwrite(temp_file, grayImage)
 
     with open(temp_file, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
