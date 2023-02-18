@@ -14,8 +14,7 @@ from wtforms import SubmitField
 import random
 
 app = Flask(__name__)
-Fuck = "indeed"
-
+imageUrl = "indeed"
 app.config['SECRET_KEY'] = 'asldfkjlj'
 #파일 저장 공간
 app.config['UPLOADED_PHOTOS_DEST'] = 'uploads'
@@ -47,8 +46,8 @@ def upload_image():
         #file save
         filename = photos.save(form.photo.data)
         file_url = url_for('get_file', filename=filename)
-        global Fuck
-        Fuck = file_url
+        global imageUrl
+        imageUrl = file_url
     else:
         file_url = None
     return render_template('sign.html', form=form, file_url=file_url)
@@ -76,9 +75,9 @@ def get_places(location, radius, keyword):
 #결과 화면 가져오기/ hugging face의 모델을 이용-사진 인식 모델
 @app.route('/result',  methods=['GET', 'POST'])
 def search():
-    print(Fuck[1:])
-    uploaded_image = Fuck[1:]
-    file_path = Fuck[1:]
+    print(imageUrl[1:])
+    uploaded_image = imageUrl[1:]
+    file_path = imageUrl[1:]
 
     # Load the image and convert it to grayscale
     image = cv2.imread(file_path)
